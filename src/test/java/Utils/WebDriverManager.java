@@ -2,6 +2,7 @@ package Utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -29,6 +30,14 @@ public class WebDriverManager {
         else {
             return null;
         }
+    }
+
+    public static WebDriver getHeadlessChromeDriver() {
+        ChromeOptions chrome_options = new ChromeOptions();
+        chrome_options.addArguments("--headless");
+
+        System.setProperty("webdriver.chrome.driver", "C://WebDrivers/chromedriver.exe");
+        return new ChromeDriver(chrome_options);
     }
 
 }

@@ -47,4 +47,13 @@ public class BasePage {
         return true;
     }
 
+    public boolean isEnable(WebElement element) {
+        try {
+            return element.isEnabled();
+        }
+        catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
 }
