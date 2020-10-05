@@ -1,10 +1,17 @@
 package TestCases;
 
 import Utils.WebDriverManager;
+import io.qameta.allure.Allure;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+
+import java.io.ByteArrayInputStream;
 import java.util.concurrent.TimeUnit;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
 
 public class BaseTest {
 
@@ -12,7 +19,7 @@ public class BaseTest {
 
     public final static  String BASE_URL = "https://s1.demo.opensourcecms.com/wordpress/";
 
-    @BeforeClass(alwaysRun = true)
+    @BeforeSuite(alwaysRun = true)
     public void setUp(){
         //browsers = chrome, firefox, ie, edge
         String browser = "chrome";
@@ -26,11 +33,15 @@ public class BaseTest {
         driver.manage().window().maximize();
     }
 
-    @AfterClass(alwaysRun = true)
+    @AfterSuite(alwaysRun = true)
     public void tearDown(){
         //Closing driver
         driver.manage().deleteAllCookies();
         driver.quit();
+    }
+
+    public void takeScreenShot(String ssName,WebDriver driver) {
+        Allure.addAttachment(ssName, new ByteArrayInputStream(((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES)));
     }
 
 }

@@ -4,11 +4,15 @@ import Pages.MainPage;
 import Pages.ReplyPage;
 import Pages.RightPanelSection;
 import Pages.SearchResultsPage;
+import io.qameta.allure.Step;
+import org.openqa.selenium.TakesScreenshot;
 import org.testng.annotations.Test;
+
 
 public class HomePageTestCases extends BaseTest {
 
     @Test(alwaysRun = true)
+    @Step("Perform a basic search")
     public void basicSearch() {
         MainPage mainPage  = new MainPage(driver);
         SearchResultsPage searchPage = new SearchResultsPage(driver);
@@ -20,22 +24,25 @@ public class HomePageTestCases extends BaseTest {
         rightPanel.performSearch("Hello World");
         searchPage.clickPostTitle();
         replyPage.pageIsLoaded();
+        takeScreenShot("Search Result",driver);
     }
 
     @Test(alwaysRun = true)
+    @Step("Click on the first Post Link")
     public void clickOnPostLink() {
         MainPage mainPage  = new MainPage(driver);
 
         mainPage.pageIsLoaded();
         mainPage.clickScrollDownButton();
         mainPage.clickPostTitleLink();
+        takeScreenShot("Post Link",driver);
     }
 
     @Test(alwaysRun = true)
+    @Step("Submit a Comment")
     public void submitComment() {
         basicSearch();
         ReplyPage replyPage = new ReplyPage(driver);
-
 
         replyPage.pageIsLoaded();
         replyPage.insertComment("This is a comment to test");
@@ -43,6 +50,7 @@ public class HomePageTestCases extends BaseTest {
         replyPage.insertEmail("email@test.com");
         replyPage.insertWebsite("www.google.com");
         replyPage.clickPostCommentButton();
+        takeScreenShot("Submitted Comment", driver);
     }
 
 }
