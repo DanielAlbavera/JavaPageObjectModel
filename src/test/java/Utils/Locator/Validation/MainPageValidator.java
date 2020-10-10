@@ -17,16 +17,8 @@ public class MainPageValidator extends MainPage {
        System.out.printf("%-20s %b\n","postsLabel:", isEnable(postsLabel));
    }
 
-    public void validatePostTitleLink() {
-        System.out.printf("%-20s %b\n", "postTitleLink:", isEnable(postTitleLink));
-    }
-
-    public void validatePostDateLink() {
-        System.out.printf("%-20s %b\n", "postDateLink:", isEnable(postDateLink));
-    }
-
-    public void validatePostMessage() {
-        System.out.printf("%-20s %b\n", "postMessage:", isEnable(postMessage));
+    public void validatePostsList() {
+        System.out.printf("%-20s %b\n", "postTitleLink:", isEnable(postsList.get(0)));
     }
 
     public void validateSiteTitleLink() {

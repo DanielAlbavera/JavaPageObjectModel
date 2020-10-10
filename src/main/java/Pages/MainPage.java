@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class MainPage extends BasePage {
 
     public MainPage(WebDriver driver) {
@@ -18,14 +20,8 @@ public class MainPage extends BasePage {
     @FindBy(xpath = "//*[@class='page-title']")
     protected WebElement postsLabel;
 
-    @FindBy(xpath = "(//*[@class='entry-title']/a)[2]")
-    protected WebElement postTitleLink;
-
-    @FindBy(xpath = "(//div[@class='entry-meta']/a)[2]")
-    protected WebElement postDateLink;
-
-    @FindBy(xpath = "//div[@class='entry-content']/p")
-    protected WebElement postMessage;
+    @FindBy(xpath = "//div/main/article[contains(@id,'post')]")
+    protected List<WebElement> postsList;
 
     @FindBy(xpath = "//a[@rel='home']")
     protected WebElement siteTitleLink;
@@ -34,11 +30,21 @@ public class MainPage extends BasePage {
         click(scrollDownButton);
     }
 
-    public void clickPostTitleLink() {
-        postTitleLink.click();
+    public MainPagePost getPostById(int postIndex) {
+        return new MainPagePost(driver,postsList.get(postIndex));
     }
 
-    public void clickPostDateLink() { postDateLink.click(); }
+    public void getTotalPosts() {
+        System.out.println("Total of Posts: " + postsList.size());
+    }
+
+    public MainPagePost clickOnFirstPost() {
+        return new MainPagePost(driver,postsList.get(0));
+    }
+
+    public MainPagePost clickOnLastPost() {
+        return new MainPagePost(driver,postsList.get(postsList.size() - 1 ));
+    }
 
     @Override
     public boolean pageIsLoaded() {

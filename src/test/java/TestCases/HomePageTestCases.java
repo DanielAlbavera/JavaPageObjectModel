@@ -23,19 +23,29 @@ public class HomePageTestCases extends BaseTest {
     }
 
     @Test(alwaysRun = true)
-    public void clickOnPostLink() {
+    public void clickOnFirstPost() {
         MainPage mainPage  = new MainPage(driver);
 
         mainPage.pageIsLoaded();
         mainPage.clickScrollDownButton();
-        mainPage.clickPostTitleLink();
+        mainPage.getTotalPosts();
+        mainPage.clickOnFirstPost();
+    }
+
+    @Test(alwaysRun = true)
+    public void clickOnLastPost() {
+        MainPage mainPage  = new MainPage(driver);
+
+        mainPage.pageIsLoaded();
+        mainPage.clickScrollDownButton();
+        mainPage.getTotalPosts();
+        mainPage.clickOnLastPost();
     }
 
     @Test(alwaysRun = true)
     public void submitComment() {
         basicSearch();
         ReplyPage replyPage = new ReplyPage(driver);
-
 
         replyPage.pageIsLoaded();
         replyPage.insertComment("This is a comment to test");

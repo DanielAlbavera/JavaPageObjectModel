@@ -37,9 +37,7 @@ public class LocatorValidator  {
 
         mainPage.validateScrollDownButton();
         mainPage.validatePostsLabel();
-        mainPage.validatePostTitleLink();
-        mainPage.validatePostDateLink();
-        mainPage.validatePostMessage();
+        mainPage.validatePostsList();
         mainPage.validateSiteTitleLink();
     }
 
