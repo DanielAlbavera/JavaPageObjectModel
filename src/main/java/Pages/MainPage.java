@@ -12,8 +12,6 @@ public class MainPage extends BasePage {
         super(driver);
     }
 
-    //TODO Convert all this variables into one Element
-
     @FindBy(xpath = "//a[@class='menu-scroll-down']")
     protected WebElement scrollDownButton;
 
@@ -31,7 +29,7 @@ public class MainPage extends BasePage {
     }
 
     public MainPagePost getPostById(int postIndex) {
-        return new MainPagePost(driver,postsList.get(postIndex));
+        return new MainPagePost(driver, postsList.get(postIndex));
     }
 
     public void getTotalPosts() {
@@ -39,11 +37,11 @@ public class MainPage extends BasePage {
     }
 
     public MainPagePost clickOnFirstPost() {
-        return new MainPagePost(driver,postsList.get(0));
+        return new MainPagePost(driver, postsList.get(0));
     }
 
     public MainPagePost clickOnLastPost() {
-        return new MainPagePost(driver,postsList.get(postsList.size() - 1 ));
+        return new MainPagePost(driver, postsList.get(postsList.size() - 1 ));
     }
 
     @Override

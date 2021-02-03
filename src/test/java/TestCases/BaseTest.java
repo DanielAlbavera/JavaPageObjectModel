@@ -1,6 +1,6 @@
 package TestCases;
 
-import Utils.WebDriverManager;
+import Utils.WebDriverManagerController;
 import io.qameta.allure.Allure;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -8,9 +8,7 @@ import org.openqa.selenium.WebDriver;
 
 import java.io.ByteArrayInputStream;
 import java.util.concurrent.TimeUnit;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 
 public class BaseTest {
@@ -24,7 +22,9 @@ public class BaseTest {
         //browsers = chrome, firefox, ie, edge
         String browser = "chrome";
         //Generate driver for selected browser
-        driver = WebDriverManager.getDriver(browser);
+
+        driver = WebDriverManagerController.getDriver(browser);
+
         //Setting up Page Load and Implicit wait values for the browser
         driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);

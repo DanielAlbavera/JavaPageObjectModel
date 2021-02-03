@@ -17,9 +17,15 @@ public class LocatorValidator  {
 
     public final static  String BASE_URL = "https://s1.demo.opensourcecms.com/wordpress/";
 
+    @Test(alwaysRun = true)
+    public void testHeadlessChromeDriver() {
+        driver = WebDriverManagerController.getHeadlessChromeDriver();
+        driver.get("https://google.com");
+    }
+
     @BeforeClass(alwaysRun = true)
     public void setUp(){
-        driver = WebDriverManager.getHeadlessChromeDriver();
+        driver = WebDriverManagerController.getHeadlessChromeDriver();
         driver.get(BASE_URL);
     }
 

@@ -2,6 +2,7 @@ package Utils.Locator.Validation;
 
 import Pages.MainPage;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class MainPageValidator extends MainPage {
 
@@ -18,7 +19,12 @@ public class MainPageValidator extends MainPage {
    }
 
     public void validatePostsList() {
-        System.out.printf("%-20s %b\n", "postTitleLink:", isEnable(postsList.get(0)));
+        System.out.println("Total posts: " + postsList.size());
+        int i = 1;
+        for (WebElement post : postsList) {
+            System.out.printf("%-20s %b\n", " postTitle-" + i + ":", isEnable(post));
+            i++;
+        }
     }
 
     public void validateSiteTitleLink() {

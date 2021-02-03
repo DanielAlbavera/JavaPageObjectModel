@@ -4,11 +4,16 @@ import Pages.MainPage;
 import Pages.ReplyPage;
 import Pages.RightPanelSection;
 import Pages.SearchResultsPage;
+import Utils.WebDriverManagerController;
 import io.qameta.allure.Step;
-import org.openqa.selenium.TakesScreenshot;
 import org.testng.annotations.Test;
 
 public class HomePageTestCases extends BaseTest {
+
+    @Test(alwaysRun = true)
+    public void driverTest() {
+        driver.get("https://google.com");
+    }
 
     @Test(alwaysRun = true)
     @Step("Perform a basic search")
@@ -23,23 +28,23 @@ public class HomePageTestCases extends BaseTest {
         rightPanel.performSearch("Hello World");
         searchPage.clickPostTitle();
         replyPage.pageIsLoaded();
-        takeScreenShot("Search Result",driver);
+        takeScreenShot("Search Result", driver);
     }
 
     @Test(alwaysRun = true)
-    public void clickOnFirstPost() {
     @Step("Click on the first Post Link")
-    public void clickOnPostLink() {
+    public void clickOnFirstPost() {
         MainPage mainPage  = new MainPage(driver);
 
         mainPage.pageIsLoaded();
         mainPage.clickScrollDownButton();
         mainPage.getTotalPosts();
         mainPage.clickOnFirstPost();
-        takeScreenShot("Post Link",driver);
+        takeScreenShot("First post clicked", driver);
     }
 
     @Test(alwaysRun = true)
+    @Step("Click on the last Post Link")
     public void clickOnLastPost() {
         MainPage mainPage  = new MainPage(driver);
 
@@ -47,6 +52,7 @@ public class HomePageTestCases extends BaseTest {
         mainPage.clickScrollDownButton();
         mainPage.getTotalPosts();
         mainPage.clickOnLastPost();
+        takeScreenShot("Last post clicked", driver);
     }
 
     @Test(alwaysRun = true)
@@ -55,14 +61,13 @@ public class HomePageTestCases extends BaseTest {
         basicSearch();
         ReplyPage replyPage = new ReplyPage(driver);
 
-
         replyPage.pageIsLoaded();
         replyPage.insertComment("This is a comment to test");
         replyPage.insertName("Testing User");
         replyPage.insertEmail("email@test.com");
         replyPage.insertWebsite("www.google.com");
         replyPage.clickPostCommentButton();
-        takeScreenShot("Submitted Comment", driver);
+        takeScreenShot("Comment Submitted", driver);
     }
 
 }
